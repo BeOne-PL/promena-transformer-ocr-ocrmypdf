@@ -1,0 +1,12 @@
+package pl.beone.promena.transformer.ocr.ocrmypdf.processor.parameter
+
+import pl.beone.promena.transformer.contract.model.Parameters
+import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerDefaultParameters
+import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.getPdfRendererOrNull
+import pl.beone.promena.transformer.ocr.ocrmypdf.processor.process.OcrMyPdfProcessParameterConstants.PARAMETER_PDF_RENDERER
+
+object PdfRendererParameter : AbstractParameter() {
+
+    override fun create(parameters: Parameters, defaultParameters: OcrMyPdfOcrTransformerDefaultParameters): List<String> =
+        eitherNotNullValueOrEmptyList(PARAMETER_PDF_RENDERER, parameters.getPdfRendererOrNull(), defaultParameters.pdfRenderer)
+}

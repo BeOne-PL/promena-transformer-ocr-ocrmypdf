@@ -1,0 +1,36 @@
+WORKDIR /tmp
+
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+    # Install BUILD Tools
+    yum -y install libxslt gcc gcc-c++ make autoconf wget automake libtool unzip openssl-devel bzip2-devel libffi-devel && \
+    # Tesseract 4 (Centos has only 3 by default)
+    yum-config-manager --add-repo https://download.opensuse.org/repositories/home:/Alexander_Pozdnyakov/CentOS_7/ && \
+    rpm --import https://build.opensuse.org/projects/home:Alexander_Pozdnyakov/public_key && \
+    yum -y install tesseract && \
+    yum -y --skip-broken install tesseract-langpack-* && \
+    # Dependencies
+    yum install -y pngquant jbig2dec ghostscript && \
+    # Compile Unpaper 6
+    ## FFMPEG Repository
+    yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
+    yum -y install ffmpeg-devel libjpeg-devel libpng-devel libtiff-devel zlib-devel ocaml ImageMagick-6.* ImageMagick-devel-6.* && \
+    ## Build
+    wget https://www.flameeyes.eu/files/unpaper-6.1.tar.xz && \
+        tar xvf unpaper-6.1.tar.xz && \
+        cd unpaper-6.1 && \
+        ./configure  && \
+        make && \
+        make install
+    # Compile QPDF
+    RUN wget https://github.com/qpdf/qpdf/releases/download/release-qpdf-9.0.2/qpdf-9.0.2.tar.gz && \
+        tar xvf qpdf-9.0.2.tar.gz && \
+        cd qpdf-9.0.2 && \
+        ./configure && \
+        make && \
+        make install
+    # Use Python 3.6 from repo
+    RUN yum install -y https://centos7.iuscommunity.org/ius-release.rpm && \
+    yum install -y python36u python36u-libs python36u-devel python36u-pip && \
+    pip3.6 install --upgrade pip
+
+RUN pip3.6 install ocrmypdf
