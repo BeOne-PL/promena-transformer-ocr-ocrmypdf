@@ -4,6 +4,7 @@ import io.kotlintest.shouldNotThrow
 import io.kotlintest.shouldThrow
 import org.junit.jupiter.api.Test
 import pl.beone.promena.transformer.applicationmodel.exception.transformer.TransformationNotSupportedException
+import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.OcrMyPdfOcrPdfRenderer
 import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.OcrMyPdfOcrSupport.ParametersSupport.isSupported
 import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.ocrMyPdfOcrParameters
 
@@ -19,13 +20,13 @@ class OcrMyPdfOcrParametersSupportTest {
     @Test
     fun `isSupported _ pdfRenderer`() {
         shouldNotThrow<TransformationNotSupportedException> {
-            isSupported(ocrMyPdfOcrParameters(pdfRenderer = "auto"))
+            isSupported(ocrMyPdfOcrParameters(pdfRenderer = OcrMyPdfOcrPdfRenderer.AUTO.value))
         }
         shouldNotThrow<TransformationNotSupportedException> {
-            isSupported(ocrMyPdfOcrParameters(pdfRenderer = "hocr"))
+            isSupported(ocrMyPdfOcrParameters(pdfRenderer = OcrMyPdfOcrPdfRenderer.HOCR.value))
         }
         shouldNotThrow<TransformationNotSupportedException> {
-            isSupported(ocrMyPdfOcrParameters(pdfRenderer = "sandwich"))
+            isSupported(ocrMyPdfOcrParameters(pdfRenderer = OcrMyPdfOcrPdfRenderer.SANDWICH.value))
         }
 
         shouldThrow<TransformationNotSupportedException> {

@@ -50,6 +50,10 @@ object OcrMyPdfOcrSupport {
         @JvmStatic
         fun isSupported(parameters: Parameters) {
             parameters.validate(Language.NAME, Language.CLASS, false)
+            with(OcrMyPdfOcrPdfRenderer.values().map(OcrMyPdfOcrPdfRenderer::value)) {
+                parameters.validate(PdfRenderer.NAME, PdfRenderer.CLASS, false, "(${joinToString(", ")})")
+                { contains(it) }
+            }
             parameters.validate(PdfRenderer.NAME, PdfRenderer.CLASS, false, """("auto", "hocr", "sandwich")""")
             { listOf("auto", "hocr", "sandwich").contains(it) }
             parameters.validate(RotatePages.NAME, RotatePages.CLASS, false)

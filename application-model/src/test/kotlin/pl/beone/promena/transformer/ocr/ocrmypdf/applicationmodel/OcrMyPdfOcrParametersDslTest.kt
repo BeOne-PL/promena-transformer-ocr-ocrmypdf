@@ -6,6 +6,25 @@ import org.junit.jupiter.api.Test
 
 class OcrMyPdfOcrParametersDslTest {
 
+    companion object {
+        private const val language = "eng"
+        private const val pdfRenderer = "sandwich"
+        private const val rotatePages = true
+        private const val rotatePagesThreshold = 1.111f
+        private const val removeBackground = false
+        private const val optimize = 1
+        private const val oversample = 300
+        private const val redoOcr = false
+        private const val forceOcr = true
+        private const val deskew = true
+        private const val skipText = false
+        private const val clean = true
+        private const val cleanFinal = true
+        private const val skipBig = 50.111f
+        private const val unpaperArgs = "--no-noisefilter"
+        private const val tesseractTimeout = 60
+    }
+
     @Test
     fun `ocrMyPdfOcrParameters _ default parameters`() {
         ocrMyPdfOcrParameters().let {
@@ -13,119 +32,102 @@ class OcrMyPdfOcrParametersDslTest {
                 it.getLanguage()
             }
             it.getLanguageOrNull() shouldBe null
-            it.getLanguageOrDefault("pol+eng") shouldBe "pol+eng"
+            it.getLanguageOrDefault(language) shouldBe language
 
             shouldThrow<NoSuchElementException> {
                 it.getPdfRenderer()
             }
             it.getPdfRendererOrNull() shouldBe null
-            it.getPdfRendererOrDefault("hocr") shouldBe "hocr"
+            it.getPdfRendererOrDefault(pdfRenderer) shouldBe pdfRenderer
 
             shouldThrow<NoSuchElementException> {
                 it.getRotatePages()
             }
             it.getRotatePagesOrNull() shouldBe null
-            it.getRotatePagesOrDefault(true) shouldBe true
+            it.getRotatePagesOrDefault(rotatePages) shouldBe rotatePages
 
             shouldThrow<NoSuchElementException> {
                 it.getRotatePagesThreshold()
             }
             it.getRotatePagesThresholdOrNull() shouldBe null
-            it.getRotatePagesThresholdOrDefault(1.0f) shouldBe 1.0f
+            it.getRotatePagesThresholdOrDefault(rotatePagesThreshold) shouldBe rotatePagesThreshold
 
             shouldThrow<NoSuchElementException> {
                 it.getRemoveBackground()
             }
             it.getRemoveBackgroundOrNull() shouldBe null
-            it.getRemoveBackgroundOrDefault(true) shouldBe true
+            it.getRemoveBackgroundOrDefault(removeBackground) shouldBe removeBackground
 
             shouldThrow<NoSuchElementException> {
                 it.getOptimize()
             }
             it.getOptimizeOrNull() shouldBe null
-            it.getOptimizeOrDefault(2) shouldBe 2
+            it.getOptimizeOrDefault(optimize) shouldBe optimize
 
             shouldThrow<NoSuchElementException> {
                 it.getOversample()
             }
             it.getOversampleOrNull() shouldBe null
-            it.getOversampleOrDefault(1) shouldBe 1
+            it.getOversampleOrDefault(oversample) shouldBe oversample
 
             shouldThrow<NoSuchElementException> {
                 it.getRedoOcr()
             }
             it.getRedoOcrOrNull() shouldBe null
-            it.getRedoOcrOrDefault(true) shouldBe true
+            it.getRedoOcrOrDefault(redoOcr) shouldBe redoOcr
 
             shouldThrow<NoSuchElementException> {
                 it.getForceOcr()
             }
             it.getForceOcrOrNull() shouldBe null
-            it.getForceOcrOrDefault(true) shouldBe true
+            it.getForceOcrOrDefault(forceOcr) shouldBe forceOcr
 
             shouldThrow<NoSuchElementException> {
                 it.getDeskew()
             }
             it.getDeskewOrNull() shouldBe null
-            it.getDeskewOrDefault(true) shouldBe true
+            it.getDeskewOrDefault(deskew) shouldBe deskew
 
             shouldThrow<NoSuchElementException> {
                 it.getSkipText()
             }
             it.getSkipTextOrNull() shouldBe null
-            it.getSkipTextOrDefault(true) shouldBe true
+            it.getSkipTextOrDefault(skipText) shouldBe skipText
 
             shouldThrow<NoSuchElementException> {
                 it.getClean()
             }
             it.getCleanOrNull() shouldBe null
-            it.getCleanOrDefault(true) shouldBe true
+            it.getCleanOrDefault(clean) shouldBe clean
 
             shouldThrow<NoSuchElementException> {
                 it.getCleanFinal()
             }
             it.getCleanFinalOrNull() shouldBe null
-            it.getCleanFinalOrDefault(true) shouldBe true
+            it.getCleanFinalOrDefault(cleanFinal) shouldBe cleanFinal
 
             shouldThrow<NoSuchElementException> {
                 it.getSkipBig()
             }
             it.getSkipBigOrNull() shouldBe null
-            it.getSkipBigOrDefault(5.0f) shouldBe 5.0f
+            it.getSkipBigOrDefault(skipBig) shouldBe skipBig
 
             shouldThrow<NoSuchElementException> {
                 it.getUnpaperArgs()
             }
             it.getUnpaperArgsOrNull() shouldBe null
-            it.getUnpaperArgsOrDefault("--layout double") shouldBe "--layout double"
+            it.getUnpaperArgsOrDefault(unpaperArgs) shouldBe unpaperArgs
 
             shouldThrow<NoSuchElementException> {
                 it.getTesseractTimeout()
             }
             it.getTesseractTimeoutOrNull() shouldBe null
-            it.getTesseractTimeoutOrDefault(100) shouldBe 100
+            it.getTesseractTimeoutOrDefault(tesseractTimeout) shouldBe tesseractTimeout
         }
     }
 
     @Test
     fun `ocrMyPdfOcrParameters _ all parameters`() {
-        val language = "eng"
-        val pdfRenderer = "sandwich"
-        val rotatePages = true
-        val rotatePagesThreshold = 1.111f
-        val removeBackground = false
-        val optimize = 1
-        val oversample = 300
-        val redoOcr = false
-        val forceOcr = true
-        val deskew = true
-        val skipText = false
-        val clean = true
-        val cleanFinal = true
-        val skipBig = 50.111f
-        val unpaperArgs = "--no-noisefilter"
-        val tesseractTimeout = 60
-
         ocrMyPdfOcrParameters(
             language = language,
             pdfRenderer = pdfRenderer,
