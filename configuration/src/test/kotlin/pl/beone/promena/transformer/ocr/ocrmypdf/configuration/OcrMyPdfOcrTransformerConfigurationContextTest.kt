@@ -1,7 +1,7 @@
 package pl.beone.promena.transformer.ocr.ocrmypdf.configuration
 
 import io.kotlintest.shouldBe
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.mock.env.MockEnvironment
@@ -11,7 +11,7 @@ import java.time.Duration
 class OcrMyPdfOcrTransformerConfigurationContextTest {
 
     @Test
-    fun `setting context _ default values`() {
+    fun `setting context _ default`() {
         val environment = createEnvironment(
             mapOf(
                 "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.language" to "pol+eng",
@@ -35,29 +35,29 @@ class OcrMyPdfOcrTransformerConfigurationContextTest {
         )
 
         val applicationContext = createConfigApplicationContext(environment, OcrMyPdfOcrTransformerConfigurationContext::class.java)
-        applicationContext.getBean(OcrMyPdfOcrTransformerDefaultParameters::class.java).let {
-            it.language shouldBe "pol+eng"
-            it.pdfRenderer shouldBe null
-            it.rotatePages shouldBe null
-            it.rotatePagesThreshold shouldBe null
-            it.removeBackground shouldBe null
-            it.optimize shouldBe null
-            it.oversample shouldBe null
-            it.redoOcr shouldBe null
-            it.forceOcr shouldBe null
-            it.deskew shouldBe null
-            it.skipText shouldBe null
-            it.clean shouldBe null
-            it.cleanFinal shouldBe null
-            it.skipBig shouldBe null
-            it.unpaperArgs shouldBe null
-            it.tesseractTimeout shouldBe null
-            it.timeout shouldBe null
+        with(applicationContext.getBean(OcrMyPdfOcrTransformerDefaultParameters::class.java)) {
+            language shouldBe "pol+eng"
+            pdfRenderer shouldBe null
+            rotatePages shouldBe null
+            rotatePagesThreshold shouldBe null
+            removeBackground shouldBe null
+            optimize shouldBe null
+            oversample shouldBe null
+            redoOcr shouldBe null
+            forceOcr shouldBe null
+            deskew shouldBe null
+            skipText shouldBe null
+            clean shouldBe null
+            cleanFinal shouldBe null
+            skipBig shouldBe null
+            unpaperArgs shouldBe null
+            tesseractTimeout shouldBe null
+            timeout shouldBe null
         }
     }
 
     @Test
-    fun `setting context`() {
+    fun `setting context _ all`() {
         val environment = createEnvironment(
             mapOf(
                 "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.language" to "pol+eng",
@@ -81,24 +81,24 @@ class OcrMyPdfOcrTransformerConfigurationContextTest {
         )
 
         val applicationContext = createConfigApplicationContext(environment, OcrMyPdfOcrTransformerConfigurationContext::class.java)
-        applicationContext.getBean(OcrMyPdfOcrTransformerDefaultParameters::class.java).let {
-            it.language shouldBe "pol+eng"
-            it.pdfRenderer shouldBe "sandwich"
-            it.rotatePages shouldBe true
-            it.rotatePagesThreshold shouldBe 1.111f
-            it.removeBackground shouldBe false
-            it.optimize shouldBe 1
-            it.oversample shouldBe 300
-            it.redoOcr shouldBe false
-            it.forceOcr shouldBe true
-            it.deskew shouldBe true
-            it.skipText shouldBe false
-            it.clean shouldBe true
-            it.cleanFinal shouldBe true
-            it.skipBig shouldBe 50.111f
-            it.unpaperArgs shouldBe "--no-noisefilter"
-            it.tesseractTimeout shouldBe 60
-            it.timeout shouldBe Duration.ofMinutes(5)
+        with(applicationContext.getBean(OcrMyPdfOcrTransformerDefaultParameters::class.java)) {
+            language shouldBe "pol+eng"
+            pdfRenderer shouldBe "sandwich"
+            rotatePages shouldBe true
+            rotatePagesThreshold shouldBe 1.111f
+            removeBackground shouldBe false
+            optimize shouldBe 1
+            oversample shouldBe 300
+            redoOcr shouldBe false
+            forceOcr shouldBe true
+            deskew shouldBe true
+            skipText shouldBe false
+            clean shouldBe true
+            cleanFinal shouldBe true
+            skipBig shouldBe 50.111f
+            unpaperArgs shouldBe "--no-noisefilter"
+            tesseractTimeout shouldBe 60
+            timeout shouldBe Duration.ofMinutes(5)
         }
     }
 

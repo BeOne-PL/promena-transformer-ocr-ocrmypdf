@@ -63,17 +63,18 @@ internal fun test(
 ) {
     val data = createData(getResourceAsBytes(resourcePath))
 
-    createOcrMyPdfOcrTransformer()
-        .transform(singleDataDescriptor(data, APPLICATION_PDF, emptyMetadata()), targetMediaType, parameters).let { transformedDataDescriptor ->
-            withClue("Transformed data should contain only <1> element") { transformedDataDescriptor.descriptors shouldHaveSize 1 }
+    with(
+        createOcrMyPdfOcrTransformer()
+            .transform(singleDataDescriptor(data, APPLICATION_PDF, emptyMetadata()), targetMediaType, parameters)
+    ) {
+        withClue("Transformed data should contain only <1> element") { descriptors shouldHaveSize 1 }
 
-            transformedDataDescriptor.descriptors[0].let { single ->
-                val text = extractText(single)
-                assertString.forEach { text shouldContain it }
-
-                single.metadata shouldBe emptyMetadata()
-            }
+        with(descriptors[0]) {
+            val text = extractText(this)
+            assertString.forEach { text shouldContain it }
+            this.metadata shouldBe emptyMetadata()
         }
+    }
 }
 
 private fun Data.readText(): String =

@@ -9,10 +9,10 @@ class OcrMyPdfOcrDslTest {
 
     @Test
     fun ocrMyPdfOcrTransformation() {
-        ocrMyPdfOcrTransformation(APPLICATION_PDF, ocrMyPdfOcrParameters()).let {
-            it.transformerId shouldBe TRANSFORMER_ID
-            it.targetMediaType shouldBe APPLICATION_PDF
-            it.parameters.getAll().size shouldBe 0
+        with(ocrMyPdfOcrTransformation(APPLICATION_PDF, ocrMyPdfOcrParameters())) {
+            transformerId shouldBe TRANSFORMER_ID
+            targetMediaType shouldBe APPLICATION_PDF
+            parameters.getAll().size shouldBe 0
         }
     }
 }
