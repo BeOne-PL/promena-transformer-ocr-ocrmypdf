@@ -12,7 +12,6 @@ import pl.beone.promena.transformer.contract.model.Parameters
 import pl.beone.promena.transformer.contract.model.data.Data
 import pl.beone.promena.transformer.contract.model.data.WritableData
 import pl.beone.promena.transformer.internal.extension.copy
-import pl.beone.promena.transformer.internal.model.data.file.FileData
 import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerDefaultParameters
 import pl.beone.promena.transformer.ocr.ocrmypdf.processor.parameter.*
 import pl.beone.promena.transformer.ocr.ocrmypdf.processor.process.OcrMyPdfProcessExecutor
@@ -60,7 +59,7 @@ internal class Processor(
         val (data, _, metadata) = singleDataDescriptor
 
         execute(parameters.getTimeoutOrNull() ?: defaultParameters.timeout, executionDispatcher) {
-            val sourceFile = createFileIfDataImplementationDoesNotEqualFileData(data)
+            val sourceFile = createTempPdfFile().also { copyToFile(data, it) }
             val processParameters = determineProcessParameters(parameters) + sourceFile.path
 
             try {
@@ -76,14 +75,6 @@ internal class Processor(
 
         return singleTransformedDataDescriptor(transformedWritableData, metadata)
     }
-
-    private fun createFileIfDataImplementationDoesNotEqualFileData(data: Data): File =
-        if (data is FileData) {
-            File(data.getLocation())
-        } else {
-            logger.debug { "Data implementation doesn't equal <FileData>. Creating and saving to temp file..." }
-            createTempPdfFile().also { copyToFile(data, it) }
-        }
 
     private fun determineProcessParameters(parameters: Parameters): List<String> =
         processParameters.fold(emptyList()) { acc, parameter -> acc + parameter.create(parameters, defaultParameters) }
