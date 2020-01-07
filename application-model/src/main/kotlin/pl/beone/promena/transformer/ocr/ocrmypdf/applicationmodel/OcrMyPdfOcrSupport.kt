@@ -54,8 +54,6 @@ object OcrMyPdfOcrSupport {
                 parameters.validate(PdfRenderer.NAME, PdfRenderer.CLASS, false, "(${joinToString(", ")})")
                 { contains(it) }
             }
-            parameters.validate(PdfRenderer.NAME, PdfRenderer.CLASS, false, """("auto", "hocr", "sandwich")""")
-            { listOf("auto", "hocr", "sandwich").contains(it) }
             parameters.validate(RotatePages.NAME, RotatePages.CLASS, false)
             parameters.validate(RotatePagesThreshold.NAME, RotatePagesThreshold.CLASS, false, "<0.0, 1000.0>")
             { (0.0..1000.0).contains(it) }
