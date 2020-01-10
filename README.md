@@ -1,7 +1,7 @@
 # Promena Transformer - `ocr - OCRmyPDF`
 This transformer provides functionality to OCR a document using OCRmyPDF 9.3.0.
 
-Visit [Promena#Transformers](https://gitlab.office.beone.pl/promena/promena#transformers) to understand the repository structure.
+Visit [Promena#Transformer](https://gitlab.office.beone.pl/promena/promena#transformer) to understand the repository structure.
 
 ## Transformation [`OcrMyPdfOcrDsl`](./application-model/src/main/kotlin/pl/beone/promena/transformer/ocr/ocrmypdf/applicationmodel/OcrMyPdfOcrDsl.kt), [`OcrMyPdfOcrParametersDsl`](./application-model/src/main/kotlin/pl/beone/promena/transformer/ocr/ocrmypdf/applicationmodel/OcrMyPdfOcrParametersDsl.kt)
 The [`DataDescriptor`](https://gitlab.office.beone.pl/promena/promena/blob/master/base/promena-transformer/contract/src/main/kotlin/pl/beone/promena/transformer/contract/data/DataDescriptor.kt) has to contain at least one descriptor. If more than one descriptor is passed, the transformation will be performed on each of them separately.
