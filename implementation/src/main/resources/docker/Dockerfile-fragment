@@ -29,8 +29,8 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
         make && \
         make install
     # Use Python 3.6 from repo
-    RUN yum install -y https://centos7.iuscommunity.org/ius-release.rpm && \
+    RUN yum install -y https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-2-1.el7.ius.noarch.rpm && \
         yum install -y python36u python36u-libs python36u-devel python36u-pip && \
         pip3.6 install --upgrade pip
 
-RUN pip3.6 install ocrmypdf==9.3.0
+RUN pip3.6 install ocrmypdf==9.8.2

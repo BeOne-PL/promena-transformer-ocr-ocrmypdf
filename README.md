@@ -38,7 +38,7 @@ The explanation of each parameter is described in [OCRmyPDF documentation](https
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>ocr-ocrmypdf-configuration</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ The explanation of each parameter is described in [OCRmyPDF documentation](https
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>ocr-ocrmypdf</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
