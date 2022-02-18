@@ -15,7 +15,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
     yum -y install ffmpeg-devel libjpeg-devel libpng-devel libtiff-devel zlib-devel ocaml ImageMagick-6.* ImageMagick-devel-6.* && \
     ## Build
-    wget https://www.flameeyes.eu/files/unpaper-6.1.tar.xz && \
+    wget --no-check-certificate https://www.flameeyes.eu/files/unpaper-6.1.tar.xz && \
         tar xvf unpaper-6.1.tar.xz && \
         cd unpaper-6.1 && \
         ./configure  && \
@@ -29,8 +29,8 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
         make && \
         make install
     # Use Python 3.6 from repo
-    RUN yum install -y https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-2-1.el7.ius.noarch.rpm && \
+    RUN yum install -y https://repo.ius.io/7/x86_64/packages/i/ius-release-2-1.el7.ius.noarch.rpm && \
         yum install -y python36u python36u-libs python36u-devel python36u-pip && \
         pip3.6 install --upgrade pip
 
-RUN pip3.6 install ocrmypdf==9.8.2
+RUN pip3.6 install ocrmypdf==11.6.2
