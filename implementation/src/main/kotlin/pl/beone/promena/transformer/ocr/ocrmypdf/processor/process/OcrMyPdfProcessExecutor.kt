@@ -17,7 +17,9 @@ object OcrMyPdfProcessExecutor {
             .start()
 
         if (process.waitFor() != 0) {
-            throw RuntimeException(process.errorStream.readString())
+            val errorMessage = process.errorStream.readString()
+            process.destroy()
+            throw RuntimeException(errorMessage)
         }
 
         return process.inputStream

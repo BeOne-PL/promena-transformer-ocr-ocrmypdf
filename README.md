@@ -38,7 +38,7 @@ The explanation of each parameter is described in [OCRmyPDF documentation](https
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>ocr-ocrmypdf-configuration</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -47,14 +47,14 @@ The explanation of each parameter is described in [OCRmyPDF documentation](https
 <dependency>
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>ocr-ocrmypdf</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
 ## Properties
 ```properties
 transformer.pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformer.priority=1
-transformer.pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformer.actors=1
+transformer.pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformer.actors=5
 
 transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.language=pol+eng
 transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.pdf-renderer=

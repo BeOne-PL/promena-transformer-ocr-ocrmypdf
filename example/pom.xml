@@ -13,10 +13,10 @@
 
     <groupId>pl.beone.promena.transformer</groupId>
     <artifactId>ocr-ocrmypdf-example</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
 
     <properties>
-        <ocr-ocrmypdf.version>1.0.2</ocr-ocrmypdf.version>
+        <ocr-ocrmypdf.version>1.1.0</ocr-ocrmypdf.version>
     </properties>
 
     <dependencies>

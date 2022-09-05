@@ -12,12 +12,13 @@ import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.OcrMyPdfOcrSup
 import pl.beone.promena.transformer.ocr.ocrmypdf.processor.Processor
 
 class OcrMyPdfOcrTransformer(
+    settings: OcrMyPdfOcrTransformerSettings,
     defaultParameters: OcrMyPdfOcrTransformerDefaultParameters,
     private val communicationParameters: CommunicationParameters,
     private val communicationWritableDataCreator: CommunicationWritableDataCreator
 ) : Transformer {
 
-    private val processor = Processor(defaultParameters)
+    private val processor = Processor(defaultParameters, settings.numberOfActors)
 
     override fun transform(dataDescriptor: DataDescriptor, targetMediaType: MediaType, parameters: Parameters): TransformedDataDescriptor =
         dataDescriptor.descriptors

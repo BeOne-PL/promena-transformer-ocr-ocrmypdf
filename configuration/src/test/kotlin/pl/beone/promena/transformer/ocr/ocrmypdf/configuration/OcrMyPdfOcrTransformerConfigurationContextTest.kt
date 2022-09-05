@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.mock.env.MockEnvironment
 import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerDefaultParameters
+import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerSettings
 import java.time.Duration
 
 class OcrMyPdfOcrTransformerConfigurationContextTest {
@@ -14,6 +15,8 @@ class OcrMyPdfOcrTransformerConfigurationContextTest {
     fun `setting context _ default`() {
         val environment = createEnvironment(
             mapOf(
+                "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformer.actors" to "3",
+
                 "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.language" to "pol+eng",
                 "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.pdf-renderer" to "",
                 "transformer.pl.beone.promena.transformer.ocr.ocrmypdf.default.parameters.rotate-pages" to "",
@@ -35,6 +38,9 @@ class OcrMyPdfOcrTransformerConfigurationContextTest {
         )
 
         val applicationContext = createConfigApplicationContext(environment, OcrMyPdfOcrTransformerConfigurationContext::class.java)
+        with(applicationContext.getBean(OcrMyPdfOcrTransformerSettings::class.java)) {
+            numberOfActors shouldBe 3
+        }
         with(applicationContext.getBean(OcrMyPdfOcrTransformerDefaultParameters::class.java)) {
             language shouldBe "pol+eng"
             pdfRenderer shouldBe null

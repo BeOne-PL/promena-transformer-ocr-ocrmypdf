@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerDefaultParameters
+import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerSettings
 import pl.beone.promena.transformer.ocr.ocrmypdf.configuration.extension.getNotBlankProperty
 import pl.beone.promena.transformer.ocr.ocrmypdf.configuration.extension.getRequiredNotBlankProperty
 import pl.beone.promena.transformer.ocr.ocrmypdf.configuration.extension.toDuration
@@ -14,6 +15,12 @@ class OcrMyPdfOcrTransformerConfigurationContext {
     companion object {
         private const val PROPERTY_PREFIX = "transformer.pl.beone.promena.transformer.ocr.ocrmypdf"
     }
+
+    @Bean
+    fun ocrMyOcrPdfOcrTransformerSettings(environment: Environment): OcrMyPdfOcrTransformerSettings =
+        OcrMyPdfOcrTransformerSettings(
+            environment.getRequiredNotBlankProperty("$PROPERTY_PREFIX.OcrMyPdfOcrTransformer.actors").toInt()
+        )
 
     @Bean
     fun ocrMyPdfOcrTransformerDefaultParameters(environment: Environment): OcrMyPdfOcrTransformerDefaultParameters =

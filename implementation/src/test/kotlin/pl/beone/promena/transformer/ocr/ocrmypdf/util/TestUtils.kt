@@ -22,6 +22,7 @@ import pl.beone.promena.transformer.internal.model.data.memory.toMemoryData
 import pl.beone.promena.transformer.internal.model.metadata.emptyMetadata
 import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformer
 import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerDefaultParameters
+import pl.beone.promena.transformer.ocr.ocrmypdf.OcrMyPdfOcrTransformerSettings
 import pl.beone.promena.transformer.ocr.ocrmypdf.applicationmodel.ocrMyPdfOcrParameters
 
 internal object MemoryCommunicationWritableDataCreator : CommunicationWritableDataCreator {
@@ -29,11 +30,12 @@ internal object MemoryCommunicationWritableDataCreator : CommunicationWritableDa
 }
 
 internal fun createOcrMyPdfOcrTransformer(
+    settings: OcrMyPdfOcrTransformerSettings = OcrMyPdfOcrTransformerSettings(numberOfActors = 3),
     parameters: OcrMyPdfOcrTransformerDefaultParameters = OcrMyPdfOcrTransformerDefaultParameters("pol+eng"),
     communicationParameters: CommunicationParameters = mockk(),
     communicationWritableDataCreator: CommunicationWritableDataCreator = MemoryCommunicationWritableDataCreator
 ): OcrMyPdfOcrTransformer =
-    OcrMyPdfOcrTransformer(parameters, communicationParameters, communicationWritableDataCreator)
+    OcrMyPdfOcrTransformer(settings, parameters, communicationParameters, communicationWritableDataCreator)
 
 internal fun pdfTest(
     resourcePath: String,

@@ -21,7 +21,8 @@ import java.io.File
 import java.util.concurrent.Executors
 
 internal class Processor(
-    private val defaultParameters: OcrMyPdfOcrTransformerDefaultParameters
+    private val defaultParameters: OcrMyPdfOcrTransformerDefaultParameters,
+    private val numberOfActorThreads: Int
 ) {
 
     companion object {
@@ -48,7 +49,7 @@ internal class Processor(
         )
     }
 
-    private val executionDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val executionDispatcher = Executors.newFixedThreadPool(numberOfActorThreads).asCoroutineDispatcher()
 
     fun process(
         singleDataDescriptor: DataDescriptor.Single,
@@ -57,8 +58,10 @@ internal class Processor(
         transformedWritableData: WritableData
     ): TransformedDataDescriptor.Single {
         val (data, _, metadata) = singleDataDescriptor
+        logger.debug("OCR transformation started!")
 
         execute(parameters.getTimeoutOrNull() ?: defaultParameters.timeout, executionDispatcher) {
+            logger.debug {"Executing transformation..."}
             val sourceFile = createTempPdfFile().also { copyToFile(data, it) }
             val processParameters = determineProcessParameters(parameters) + sourceFile.path
 

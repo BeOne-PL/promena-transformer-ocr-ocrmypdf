@@ -33,4 +33,4 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
         yum install -y python36u python36u-libs python36u-devel python36u-pip && \
         pip3.6 install --upgrade pip
 
-RUN pip3.6 install ocrmypdf==11.6.2
+RUN pip3.6 install ocrmypdf==12.7.2
